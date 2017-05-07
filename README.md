@@ -1,11 +1,7 @@
-# DOCUMENTATION SERVICES API REST FOR XOOK
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Total Downloads][ico-downloads]][link-downloads]
+# DOCUMENTATION FRONT ENT ANGULAR-YEOMAN XOOK COMPANY ![Build Status](https://travis-ci.org/angular/material.svg)
 
-Based on https://github.com/XookGT/API
+Based on https://github.com/XookGT/FrontEnd-Angular
 
 
 ## About
@@ -21,15 +17,20 @@ Run `grunt` for building and `grunt serve` for preview.
 
 Running `grunt test` will run the unit tests with karma.
 
-## Other Libraries
+# Other Libraries
 
-# Angular Translate
+## Angular Translate
 install whit npm intall -save
 
-    https://github.com/angular-translate/angular-translate 
+> for more information visit: https://github.com/angular-translate/angular-translate 
 
-# Angular Toastr
-install whit npm intall -save
+## Angular Toastr
+install whit npm install -save
 
-    https://github.com/Foxandxss/angular-toastr 
+> for more information visit: https://github.com/Foxandxss/angular-toastr 
 
+## Angular Material
+
+View Manager, install whit CDN in the index.html
+
+> for more information visit: https://github.com/angular/material.
