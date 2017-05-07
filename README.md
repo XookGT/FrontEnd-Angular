@@ -24,8 +24,12 @@ Running `grunt test` will run the unit tests with karma.
 ## Other Libraries
 
 # Angular Translate
-    https://github.com/angular-translate/angular-translate install whit npm intall -save
+install whit npm intall -save
+
+    https://github.com/angular-translate/angular-translate 
 
 # Angular Toastr
-    https://github.com/Foxandxss/angular-toastr install whit npm intall -save
+install whit npm intall -save
+
+    https://github.com/Foxandxss/angular-toastr 
 
