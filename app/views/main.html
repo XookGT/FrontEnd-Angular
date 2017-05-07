@@ -1,0 +1,34 @@
+<div class="jumbotron">
+  <h1>'Login!'</h1>
+  <p class="lead">
+    <img src="images/yeoman.png" alt="I'm Yeoman">
+  </p>
+</div>
+<form name="loginForm">
+
+  <md-input-container class="md-block">
+    <label>{{ 'user_name' | translate }}</label>
+    <input required="" type="email" name="clientEmail" ng-model="login.clientEmail" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+
+    <div ng-messages="loginForm.clientEmail.$error" role="alert">
+      <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+        {{ 'error_mail' | translate }}
+      </div>
+    </div>
+  </md-input-container>
+  <md-input-container class="md-block">
+    <label>{{ 'password' | translate }}</label>
+    <input ng-model="login.pass" name="clientPass" required="" type="password" minlength="8">
+    <div ng-messages="loginForm.clientPass.$error">
+      <div ng-message="required">{{ 'error_required' | translate }}</div>
+      <div ng-message="minlength">
+        {{ 'error_pass' | translate }}
+      </div>
+    </div>
+  </md-input-container>
+  <div align='center'>
+    <md-button  class="md-raised md-primary" ng-click="login()">Iniciar</md-button >
+    <!--<md-button class="md-raised md-primary" type="submit">Iniciar</md-button>-->
+  </div>
+</form>
+

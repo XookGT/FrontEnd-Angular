@@ -1,0 +1,74 @@
+<md-content>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div align='center'>
+        <h3>{{ 'categories' | translate }}</h3>
+      </div>
+    </div>
+  </div>
+  <md-tabs md-dynamic-height="" md-border-bottom="">
+    <md-tab label="{{'add'|translate}}">
+      <md-content class="md-padding">
+        <form name="categoriesForm">
+
+          <md-input-container class="md-block">
+            <label>{{ 'categorie_name' | translate }}</label>
+            <input required="" type="text" name="nameCat" ng-model="cat.nameCat" minlength="2" maxlength="50">
+
+            <div ng-messages="categoriesForm.nameCat.$error" role="alert">
+              <div ng-message="required">{{ 'error_required' | translate }}</div>
+              <div ng-message-exp="[ 'minlength', 'maxlength', 'pattern']">
+                {{ 'error_maxlength' | translate }}
+              </div>
+            </div>
+            </md-input-container>
+          
+          <div align='center'>
+            <md-button class="md-raised md-primary" ng-click="addCategorie()">{{'add'|translate}}</md-button>
+          </div>
+        </form>
+      </md-content>
+    </md-tab>
+    <md-tab label="{{'edit'|translate}}">
+      <md-content class="md-padding">
+        <form name="categoriesForm">
+          <md-input-container class="md-block">
+            <label>{{ 'categorie_name' | translate }}</label>
+            <input required="" type="text" name="nameCat" ng-model="login.nameCat" minlength="2" maxlength="50">
+
+            <div ng-messages="loginForm.nameCat.$error" role="alert">
+              <div ng-message="required">{{ 'error_required' | translate }}</div>
+              <div ng-message-exp="[ 'minlength', 'maxlength', 'pattern']">
+                {{ 'error_maxlength' | translate }}
+              </div>
+          </md-input-container>
+          <div align='center'>
+            <md-button class="md-raised md-primary" ng-click="login()">{{'edit'|translate}}</md-button>
+          </div>
+        </form>
+      </md-content>
+    </md-tab>
+    <md-tab label="{{'search'|translate}}" ng-click="SearchCategories()">
+      
+         
+          <label>{{ 'categories' | translate }}</label>
+          <md-select label="{{ 'categorie_name' | translate }}" data-md-container-class="selectdemoSelectHeader" ng-model="selectedUser" md-on-close="clearSearchTerm()">
+            <md-select-header class="demo-select-header">
+              <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" placeholder="{{ 'search' | translate }} {{ 'categories' | translate }}"
+                type="search" class="demo-header-searchbox md-text">
+            </md-select-header>
+            <md-option ng-value="user" ng-repeat="user in users |
+              filter:searchTerm track by user.id" >{{ user.name }}</md-option>
+          </md-select>
+
+
+    </md-tab>
+    <md-tab label="{{'remove'|translate}}">
+      <md-content class="md-padding">
+        <h1 class="md-display-2">{{'remove'|translate}}</h1>
+        <p>remove categories.
+        </p>
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</md-content>
