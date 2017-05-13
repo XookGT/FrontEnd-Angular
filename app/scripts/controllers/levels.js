@@ -12,7 +12,7 @@ angular.module('xookFrontApp')
 
     $scope.Searchlevels = function () {
 
-      var urlCountries = 'http://xook.com.gt:9080/api/level-all';
+      var urlCountries = 'http://xook.com.gt:88/api/level-all';
       $scope.users;
       $http({
         method: 'GET',
@@ -38,11 +38,9 @@ angular.module('xookFrontApp')
       // console.log('hola' + $scope.cat.nameCat);
       var req = {
         method: 'POST',
-        url: 'http://xook.com.gt:9080/api/level',
+        url: 'http://xook.com.gt:88/api/level',
         data: {
-          'name': $scope.cat.nameLevel,
-          'starts': "0",
-          'rank': "0"
+          'name': $scope.cat.nameLevel
         }
       };
 

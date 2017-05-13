@@ -12,16 +12,16 @@ angular.module('xookFrontApp')
 
     $scope.SearchCategories = function () {
 
-      var urlCountries = 'http://xook.com.gt:9080/api/categorie-all';
-      $scope.users;
+      var urlCountries = 'http://xook.com.gt:88/api/categorie-all';
+      $scope.categories;
       $http({
         method: 'GET',
         url: urlCountries
       }).then(function successCallback(response) {
-        $scope.users = response['data'];
-        console.log($scope.users);
+        $scope.categories = response['data'];
+        console.log($scope.categories);
       }, function errorCallback(response) {
-        $scope.users = [{
+        $scope.categories = [{
           "id": 1,
           "name": "categories no found"
         }];
@@ -39,11 +39,9 @@ angular.module('xookFrontApp')
       // console.log('hola' + $scope.cat.nameCat);
       var req = {
         method: 'POST',
-        url: 'http://xook.com.gt:9080/api/categorie',
+        url: 'http://xook.com.gt:88/api/categorie',
         data: {
-          'name': $scope.cat.nameCat,
-          'starts': "0",
-          'rank': "0"
+          'name': $scope.cat.nameCat
         }
       };
 

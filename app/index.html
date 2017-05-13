@@ -32,7 +32,7 @@
   <!-- Add your site or application content here -->
   <div class="header">
     <div class="navbar navbar-default" role="navigation">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-header">
 
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
@@ -42,15 +42,33 @@
               <span class="icon-bar"></span>
             </button>
 
-          <a class="navbar-brand" href="#/">xookFront</a>
+          <a class="navbar-brand" href="#/">X O O K</a>
         </div>
 
         <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#/">Home</a></li>
             <li><a ng-href="#/categories">{{'categories' | translate}}</a></li>
             <li><a ng-href="#/levels">{{'levels' | translate}}</a></li>
+            <li><a ng-href="#/courses">{{'courses' | translate}}</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                {{'tutoring' | translate}}
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">{{'tutors' | translate}}</a></li>
+                <li><a href="#">{{'schedule' | translate}}</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                {{'location' | translate}}
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">{{'country' | translate}}</a></li>
+                <li><a href="#">{{'province' | translate}}</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
@@ -96,12 +114,12 @@
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
-<script src="bower_components/angular-translate/angular-translate.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 <!--<script src="bower_components/angular-translate/angular-translate.js"></script>-->
 <!-- Angular Material Javascript now available via Google CDN; version 0.9.4 used here -->
 <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
 
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -110,6 +128,7 @@
 <script src="scripts/controllers/about.js"></script>
 <script src="scripts/controllers/categories.js"></script>
 <script src="scripts/controllers/levels.js"></script>
+<script src="scripts/controllers/courses.js"></script>
 <!-- endbuild -->
 
 </html>

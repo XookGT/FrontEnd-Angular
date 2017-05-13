@@ -45,6 +45,11 @@ angular
         controller: 'LevelsCtrl',
         controllerAs: 'levels'
       })
+      .when('/courses', {
+        templateUrl: 'views/courses.html',
+        controller: 'CoursesCtrl',
+        controllerAs: 'courses'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -83,9 +88,14 @@ angular
         error_mail: 'Your email must be between 10 and 100 characters long and look like an e-mail address.',
 
         tutor_title_search: 'Select your tutoring',
-        tutorial:'Tutoring',
+        tutoring:'Tutoring',
+        tutors:'Tutors',
+        
         location_title_search: 'Select yout location',
         location:'Location',
+        country:'Country',
+        province:'Province',
+
         level_title_search: 'Select yout tutoring level',
         level:'Tutoring level',
         schedule_title_search: 'Select the desired day and time',
@@ -105,7 +115,10 @@ angular
 
 
         levels: 'Levels',
-        level_name:'Level name'
+        level_name:'Level name',
+
+        courses: 'Courses',
+        courses_name: 'Course Name'
 
 
     });
@@ -143,9 +156,14 @@ angular
 
 
         tutor_title_search: 'Selecciona tu tutoria',
-        tutorial:'Tutoria',
+        tutoring:'Tutoria',
+        tutors:'Tutores',
+        
         location_title_search: 'Selecciona tu ubicacion',
         location:'Ubicacion',
+        country:'Pais',
+        province:'Provincia',
+
         level_title_search: 'Selecciona tu nivel de tutoria',
         level:'Nivel de tutoria',
         schedule_title_search: 'Selecciona el dia y horario deseado',
@@ -164,7 +182,10 @@ angular
         remove: 'Eliminar',
 
         levels:'Niveles',
-        level_name:'Nombre de Nivel Escolar'
+        level_name:'Nombre de Nivel Escolar',
+
+        courses:'Cursos',
+        courses_name: 'Nombre de Curso'
     });
 
     $translateProvider.preferredLanguage('en');

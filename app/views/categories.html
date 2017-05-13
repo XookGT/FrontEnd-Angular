@@ -57,7 +57,7 @@
               <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" placeholder="{{ 'search' | translate }} {{ 'categories' | translate }}"
                 type="search" class="demo-header-searchbox md-text">
             </md-select-header>
-            <md-option ng-value="user" ng-repeat="user in users |
+            <md-option ng-value="user" ng-repeat="user in categories |
               filter:searchTerm track by user.id" >{{ user.name }}</md-option>
           </md-select>
 
