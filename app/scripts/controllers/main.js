@@ -10,6 +10,12 @@
 angular.module('xookFrontApp')
   .controller('MainCtrl', function ($scope, $http) {
 
+    $scope.menuTemplate = {
+      url:  'views/menu.html'
+    };
+    
+    
+    
     var urlCountries = 'https://restcountries.eu/rest/v2/all';
     // var vm = this;
     // vm.login = function(){
