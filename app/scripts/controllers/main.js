@@ -14,6 +14,19 @@ angular.module('xookFrontApp')
       url:  'views/menu.html'
     };
     
+    $scope.roles=[
+      {
+        id:1,
+        name: 'Administrator'
+      },
+      {
+        id:2,
+        name: 'Tutor'
+      },{
+        id:2,
+        name: 'Student'
+      }
+    ];
     
     
     var urlCountries = 'https://restcountries.eu/rest/v2/all';

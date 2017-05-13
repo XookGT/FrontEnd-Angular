@@ -18,6 +18,7 @@ angular.module('xookFrontApp')
     $scope.openMenu = function ($mdOpenMenu, ev) {
       originatorEv = ev;
       $mdOpenMenu(ev);
+      console.log('this si menu');
     };
 
   });

@@ -40,4 +40,4 @@ View Manager, install whit CDN in the index.html
 View Manager, install whit CDN in the index.html
 
 > bower install -save flag-icon-css 
-> for more information visit: https://github.com/angular/material.
+> for more information visit: https://github.com/lipis/flag-icon-css.
