@@ -8,8 +8,8 @@
  * Controller of the xookFrontApp
  */
 angular.module('xookFrontApp')
-  .controller('MenuCtrl', function ($translate,$scope) {
-   
+  .controller('MenuCtrl', function ($translate, $scope, $timeout, $mdSidenav,loginService,$location) {
+
     $scope.changeLanguage = function (langKey) {
       $translate.use(langKey);
     };
@@ -18,7 +18,22 @@ angular.module('xookFrontApp')
     $scope.openMenu = function ($mdOpenMenu, ev) {
       originatorEv = ev;
       $mdOpenMenu(ev);
-      console.log('this si menu');
     };
 
+
+    // side menu
+
+    $scope.toggleSidenav = function (menuId) {
+      $mdSidenav(menuId).toggle();
+    };
+
+
+    $scope.logOut=function(){
+      console.log("remove key");
+      loginService.unCacheSession('userIsLogin');
+      loginService.unCacheSession('tokenLogin');
+      loginService.unCacheSession('role');
+      console.log(loginService.getSession('role'));
+      $location.path('/login');
+    };
   });

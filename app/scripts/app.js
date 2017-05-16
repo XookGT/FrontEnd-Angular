@@ -20,7 +20,8 @@ angular
     'ngTouch',
     'ngMaterial',
     'pascalprecht.translate',
-    'toastr'
+    'toastr',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider, $locationProvider, $translateProvider) {
     $locationProvider.hashPrefix('');
@@ -55,6 +56,11 @@ angular
         controller: 'MenuCtrl',
         controllerAs: 'menu'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -64,7 +70,7 @@ angular
       'password': 'Password',
       'error_pass': 'Your password is short. 8 chars minimum',
 
-      login:'Login',
+      login: 'Login',
 
       language_en: 'language english',
       language_es: 'language spanish',
@@ -127,7 +133,8 @@ angular
       level_name: 'Level name',
 
       courses: 'Courses',
-      courses_name: 'Course Name'
+      courses_name: 'Course Name',
+      description: 'Description'
 
 
     });
@@ -137,7 +144,7 @@ angular
       'password': 'Contraseña',
       'error_pass': 'Tu contraseña es pequeña debe de tener 8 caracteres minimo.',
 
-      login:'Iniciar',
+      login: 'Iniciar',
 
       language_en: 'Idioma Ingles',
       language_es: 'Idioma Español',
@@ -198,8 +205,19 @@ angular
       level_name: 'Nombre de Nivel Escolar',
 
       courses: 'Cursos',
-      courses_name: 'Nombre de Curso'
+      courses_name: 'Nombre de Curso',
+      description: 'Descripcion'
     });
 
     $translateProvider.preferredLanguage('en');
-  });
+  })
+  .run(function ($rootScope, $location, loginService) {
+      
+      $rootScope.$on('$routeChangeStart', function () {
+          if (!loginService.isLoggedIn()) {
+            // toastr.error('Iniciar Sesion para continuar', 'Mensaje');
+            $location.path('/login');
+          }
+        });
+
+      });

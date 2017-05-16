@@ -10,6 +10,10 @@
 angular.module('xookFrontApp')
   .controller('LevelsCtrl', function ($scope, $http,toastr) {
 
+      $scope.menuTemplate = {
+      url: 'views/menu.html'
+    };
+    
     $scope.Searchlevels = function () {
 
       var urlCountries = 'http://xook.com.gt:88/api/level-all';

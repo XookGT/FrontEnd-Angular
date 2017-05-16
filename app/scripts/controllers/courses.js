@@ -10,6 +10,9 @@
 angular.module('xookFrontApp')
   .controller('CoursesCtrl', function ($scope, $http, toastr) {
 
+    $scope.menuTemplate = {
+      url: 'views/menu.html'
+    };
     //init of the controller, all the function in this space is call when the controller is onload
     $scope.init = function () {
       $scope.SearchCategories();
@@ -54,17 +57,17 @@ angular.module('xookFrontApp')
 
     };
 
-//template from course
+    //template from course
     $scope.course = {
       name: '',
       description: '',
       category: '',
-      level: ''     
+      level: ''
     };
 
 
     $scope.addCourse = function () {
-       console.log($scope.course);
+      console.log($scope.course);
       var req = {
         method: 'POST',
         url: 'http://xook.com.gt:88/api/course',
@@ -72,7 +75,7 @@ angular.module('xookFrontApp')
           'name': $scope.course.name,
           'description': $scope.course.description,
           'id_categorie': $scope.course.category,
-          'id_level' : $scope.course.level
+          'id_level': $scope.course.level
         }
       };
 

@@ -1,0 +1,37 @@
+<div ng-include="menuTemplate.url"></div>
+<div class="container">
+  <div class="jumbotron">
+    <p class="lead">
+      <img src="https://cdn2.iconfinder.com/data/icons/user-avatars-3/100/Boy_graduate-512.png" height="200" width="200" alt="I'm Yeoman">
+    </p>
+  </div>
+  <form name="loginForm">
+
+    <md-input-container class="md-block">
+      <label>{{ 'user_name' | translate }}</label>
+      <input required="" type="email" name="email" ng-model="user.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+
+      <div ng-messages="loginForm.email.$error" role="alert">
+        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+          {{ 'error_mail' | translate }}
+        </div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label>{{ 'password' | translate }}</label>
+      <input ng-model="user.pass" name="pass" required="" type="password" minlength="8">
+      <div ng-messages="loginForm.pass.$error">
+        <div ng-message="required">{{ 'error_required' | translate }}</div>
+        <div ng-message="minlength">
+          {{ 'error_pass' | translate }}
+        </div>
+      </div>
+    </md-input-container>
+    <md-progress-linear md-mode="indeterminate" ng-show="load"></md-progress-linear>
+    <div align='center'>
+      <md-button type="submit" class="md-raised md-primary" ng-click="loginAction()">{{ 'login' | translate }}</md-button>
+      
+    </div>
+  </form>
+
+</div>

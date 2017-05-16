@@ -8,7 +8,11 @@
  * Controller of the xookFrontApp
  */
 angular.module('xookFrontApp')
-  .controller('CategoriesCtrl', function ($scope, $http,toastr) {
+  .controller('CategoriesCtrl', function ($scope, $http, toastr) {
+
+    $scope.menuTemplate = {
+      url: 'views/menu.html'
+    };
 
     $scope.SearchCategories = function () {
 
@@ -46,7 +50,7 @@ angular.module('xookFrontApp')
       };
 
       $http(req)
-       .then(function (response) {            
+        .then(function (response) {
             toastr.success(response['data']['msj'], "Category status");
           },
           function (response) { // optional

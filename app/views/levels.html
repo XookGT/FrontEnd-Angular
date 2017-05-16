@@ -1,78 +1,84 @@
-<md-content>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <div align='center'>
-        <h3>{{ 'levels' | translate }}</h3>
-      </div>
+<div ng-include="menuTemplate.url"></div>
+<div class="container-fluid">
+  <md-content>
+
+    <div class="page-header">
+      <h1>{{ 'levels' | translate }}</h1>
     </div>
-  </div>
-  <md-tabs md-dynamic-height="" md-border-bottom="">
-    <md-tab label="{{'add'|translate}}">
-      <md-content class="md-padding">
-        <form name="levelsForm">
+    <md-tabs md-dynamic-height="" md-border-bottom="">
+      <md-tab label="{{'add'|translate}}">
+        <div class="container">
+          <md-content class="md-padding">
+            <form name="levelsForm">
 
-          <md-input-container class="md-block">
-            <label>{{ 'level_name' | translate }}</label>
-            <input required="" type="text" name="nameLevel" ng-model="cat.nameLevel" minlength="2" maxlength="50">
+              <md-input-container class="md-block">
+                <label>{{ 'level_name' | translate }}</label>
+                <input required="" type="text" name="nameLevel" ng-model="cat.nameLevel" minlength="2" maxlength="50">
 
-            <div ng-messages="levelsForm.nameLevel.$error" role="alert">
-              <div ng-message="required">{{ 'error_required' | translate }}</div>
-              <div ng-message="max">
-                {{ 'error_maxlength' | translate }}
+                <div ng-messages="levelsForm.nameLevel.$error" role="alert">
+                  <div ng-message="required">{{ 'error_required' | translate }}</div>
+                  <div ng-message="max">
+                    {{ 'error_maxlength' | translate }}
+                  </div>
+                </div>
+              </md-input-container>
+              <div align='center'>
+                <md-button class="md-raised md-primary" type="submit" ng-click="addLevel()">{{'add'|translate}}</md-button>
               </div>
-            </div>
-          </md-input-container>
-          <div align='center'>
-            <md-button class="md-raised md-primary" type="submit" ng-click="addLevel()">{{'add'|translate}}</md-button>
-          </div>
-        </form>
-      </md-content>
-    </md-tab>
-    <md-tab label="{{'edit'|translate}}">
-      <md-content class="md-padding">
-        <form name="levelsForm">
-          <md-input-container class="md-block">
-            <label>{{ 'level_name' | translate }}</label>
-            <input required="" type="text" name="nameCat" ng-model="login.nameCat" minlength="2" maxlength="50">
+            </form>
+          </md-content>
+        </div>
+      </md-tab>
+      <md-tab label="{{'edit'|translate}}">
+        <div class="container">
+          <md-content class="md-padding">
+            <form name="levelsForm">
+              <md-input-container class="md-block">
+                <label>{{ 'level_name' | translate }}</label>
+                <input required="" type="text" name="nameCat" ng-model="login.nameCat" minlength="2" maxlength="50">
 
-            <div ng-messages="loginForm.nameCat.$error" role="alert">
-                <div ng-message="required">{{ 'error_required' | translate }}</div>
-              <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
-                {{ 'error_maxlength' | translate }}
+                <div ng-messages="loginForm.nameCat.$error" role="alert">
+                  <div ng-message="required">{{ 'error_required' | translate }}</div>
+                  <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+                    {{ 'error_maxlength' | translate }}
+                  </div>
+                </div>
+              </md-input-container>
+
+              <input hidden name="rank" ng-model="login.rank" value="0">
+              <input hidden name="star" ng-model="login.star" value="0">
+              <div align='center'>
+                <md-button class="md-raised md-primary" ng-click="login()">{{'edit'|translate}}</md-button>
               </div>
-            </div>
-          </md-input-container>
+            </form>
+          </md-content>
+        </div>
+      </md-tab>
+      <md-tab label="{{'search'|translate}}" ng-click="Searchlevels()">
+        <div class="container">
 
-          <input hidden name="rank" ng-model="login.rank" value="0">
-          <input hidden name="star" ng-model="login.star" value="0">
-          <div align='center'>
-            <md-button class="md-raised md-primary" ng-click="login()">{{'edit'|translate}}</md-button>
-          </div>
-        </form>
-      </md-content>
-    </md-tab>
-    <md-tab label="{{'search'|translate}}" ng-click="Searchlevels()">
-
-
-      <label>{{ 'levels' | translate }}</label>
-      <md-select label="{{ 'level_name' | translate }}" data-md-container-class="selectdemoSelectHeader" ng-model="selectedUser"
-        md-on-close="clearSearchTerm()">
-        <md-select-header class="demo-select-header">
-          <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" placeholder="{{ 'search' | translate }} {{ 'levels' | translate }}"
-            type="search" class="demo-header-searchbox md-text">
-        </md-select-header>
-        <md-option ng-value="user" ng-repeat="user in users |
+          <label>{{ 'levels' | translate }}</label>
+          <md-select label="{{ 'level_name' | translate }}" data-md-container-class="selectdemoSelectHeader" ng-model="selectedUser"
+            md-on-close="clearSearchTerm()">
+            <md-select-header class="demo-select-header">
+              <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" placeholder="{{ 'search' | translate }} {{ 'levels' | translate }}"
+                type="search" class="demo-header-searchbox md-text">
+            </md-select-header>
+            <md-option ng-value="user" ng-repeat="user in users |
               filter:searchTerm track by user.id">{{ user.name }}</md-option>
-      </md-select>
+          </md-select>
 
-
-    </md-tab>
-    <md-tab label="{{'remove'|translate}}">
-      <md-content class="md-padding">
-        <h1 class="md-display-2">{{'remove'|translate}}</h1>
-        <p>remove leves
-        </p>
-      </md-content>
-    </md-tab>
-  </md-tabs>
-</md-content>
+        </div>
+      </md-tab>
+      <md-tab label="{{'remove'|translate}}">
+        <div class="container">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">{{'remove'|translate}}</h1>
+            <p>remove leves
+            </p>
+          </md-content>
+        </div>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
