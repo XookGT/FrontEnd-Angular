@@ -8,24 +8,24 @@
  * Controller of the xookFrontApp
  */
 angular.module('xookFrontApp')
-  .controller('LevelsCtrl', function ($scope, $http,toastr) {
+  .controller('LevelsCtrl', function ($scope, $http, toastr) {
 
-      $scope.menuTemplate = {
+    $scope.menuTemplate = {
       url: 'views/menu.html'
     };
-    
+
     $scope.Searchlevels = function () {
 
       var urlCountries = 'http://xook.com.gt:88/api/level-all';
-      $scope.users;
+      $scope.levels;
       $http({
         method: 'GET',
         url: urlCountries
       }).then(function successCallback(response) {
-        $scope.users = response['data'];
-        console.log($scope.users);
+        $scope.levels = response['data'];
+        //console.log($scope.levels);
       }, function errorCallback(response) {
-        $scope.users = [{
+        $scope.levels = [{
           "id": 1,
           "name": "levels no found"
         }];
@@ -49,12 +49,75 @@ angular.module('xookFrontApp')
       };
 
       $http(req)
-        .then(function (response) {            
+        .then(function (response) {
             toastr.success(response['data']['msj'], "Level status");
           },
           function (response) { // optional
             toastr.error(response['data']['msj'], "Level status");
           });
+    };
+
+    //--------------------------------------------------------------------- EDIT LEVEL
+    $scope.selectEditLevel = function () {
+
+      //console.log($scope.selectLevelEdit);
+      var req = {
+        method: 'GET',
+        url: 'http://xook.com.gt:88/api/level/' + $scope.selectLevelEdit
+      };
+
+      $http(req)
+        .then(function (response) {
+            $scope.levelNameEdit = response['data']['name'];
+            //console.log($scope.levelNameEdit);
+
+          },
+          function (response) { // optional
+
+            //console.log(response);
+
+          });
+    };
+
+    $scope.editLevel = function () {
+      var req = {
+        method: 'PUT',
+        url: 'http://xook.com.gt:88/api/level/' + $scope.selectLevelEdit,
+        data: {
+          'name': $scope.levelNameEdit
+        }
+      };
+
+      $http(req)
+        .then(function (response) {
+            toastr.success(response['data']['msj'], "Level status");
+            $scope.Searchlevels();
+          },
+          function (response) { // optional
+            toastr.error(response['data']['msj'], "Level status");
+          });
+    };
+
+    //----------------------------------------------------------------------- REMOVE LEVEL
+    $scope.deleteLevel = function () {
+      var req = {
+        method: 'DELETE',
+        url: 'http://xook.com.gt:88/api/level/' + $scope.removeLevel,
+        data: {
+          'name': $scope.levelNameEdit
+        }
+      };
+
+       $http(req)
+        .then(function (response) {
+            toastr.success(response['data']['msj'], "Level status");
+            $scope.Searchlevels();
+          },
+          function (response) { // optional
+            toastr.error(response['data']['msj'], "Level status");
+          });
+
+
     };
 
   });

@@ -126,11 +126,12 @@ angular
       error_maxlength: 'The text is long',
       add: 'Add',
       edit: 'Edit',
-      remove: 'Remove',
+      remove: 'Delete',
 
 
       levels: 'Levels',
       level_name: 'Level name',
+      level: 'Level',
 
       courses: 'Courses',
       courses_name: 'Course Name',
@@ -203,6 +204,7 @@ angular
 
       levels: 'Niveles',
       level_name: 'Nombre de Nivel Escolar',
+      level: 'Nivel',
 
       courses: 'Cursos',
       courses_name: 'Nombre de Curso',

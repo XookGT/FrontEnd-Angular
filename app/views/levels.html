@@ -5,6 +5,8 @@
     <div class="page-header">
       <h1>{{ 'levels' | translate }}</h1>
     </div>
+    <div class="col-md-2"></div>
+    <div >
     <md-tabs md-dynamic-height="" md-border-bottom="">
       <md-tab label="{{'add'|translate}}">
         <div class="container">
@@ -29,29 +31,42 @@
           </md-content>
         </div>
       </md-tab>
-      <md-tab label="{{'edit'|translate}}">
+      <md-tab label="{{'edit'|translate}}" ng-click="Searchlevels()">
         <div class="container">
-          <md-content class="md-padding">
-            <form name="levelsForm">
-              <md-input-container class="md-block">
-                <label>{{ 'level_name' | translate }}</label>
-                <input required="" type="text" name="nameCat" ng-model="login.nameCat" minlength="2" maxlength="50">
+          <br>
+          <label>{{ 'levels' | translate }}</label>
+          <md-select label="{{ 'level_name' | translate }}" placeholder="{{ 'level_name' | translate }}" data-md-container-class="selectdemoSelectHeader" ng-model="selectLevelEdit"
+            md-on-close="clearSearchTerm()" ng-change="selectEditLevel()">
+            <md-select-header class="demo-select-header">
+              <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" placeholder="{{ 'search' | translate }} {{ 'levels' | translate }}"
+                type="search" class="demo-header-searchbox md-text">
+            </md-select-header>
+            <md-option ng-value="level.id" ng-repeat="level in levels |
+              filter:searchTerm track by level.id">{{ level.name }}</md-option>
+          </md-select>
 
-                <div ng-messages="loginForm.nameCat.$error" role="alert">
-                  <div ng-message="required">{{ 'error_required' | translate }}</div>
-                  <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
-                    {{ 'error_maxlength' | translate }}
+
+          <div class="panel panel-default">
+            <div class="panel-heading">{{ 'edit' | translate }} {{ 'level' | translate }}</div>
+            <div class="panel-body">
+              <form name="levelsForm">
+                <md-input-container class="md-block">
+                  <input required="" type="text" name="nameLevel" ng-model="levelNameEdit" minlength="2" maxlength="50">
+
+                  <div ng-messages="levelsForm.nameLevel.$error" role="alert">
+                    <div ng-message="required">{{ 'error_required' | translate }}</div>
+                    <div ng-message="max">
+                      {{ 'error_maxlength' | translate }}
+                    </div>
                   </div>
+                </md-input-container>
+                <div align='center'>
+                  <md-button class="md-raised md-primary" type="submit" ng-click="editLevel()">{{'edit'|translate}}</md-button>
                 </div>
-              </md-input-container>
+              </form>
+            </div>
+          </div>
 
-              <input hidden name="rank" ng-model="login.rank" value="0">
-              <input hidden name="star" ng-model="login.star" value="0">
-              <div align='center'>
-                <md-button class="md-raised md-primary" ng-click="login()">{{'edit'|translate}}</md-button>
-              </div>
-            </form>
-          </md-content>
         </div>
       </md-tab>
       <md-tab label="{{'search'|translate}}" ng-click="Searchlevels()">
@@ -64,21 +79,31 @@
               <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" placeholder="{{ 'search' | translate }} {{ 'levels' | translate }}"
                 type="search" class="demo-header-searchbox md-text">
             </md-select-header>
-            <md-option ng-value="user" ng-repeat="user in users |
+            <md-option ng-value="user" ng-repeat="user in levels |
               filter:searchTerm track by user.id">{{ user.name }}</md-option>
           </md-select>
 
         </div>
       </md-tab>
-      <md-tab label="{{'remove'|translate}}">
+      <md-tab label="{{'remove'|translate}}" ng-click="Searchlevels()">
         <div class="container">
-          <md-content class="md-padding">
-            <h1 class="md-display-2">{{'remove'|translate}}</h1>
-            <p>remove leves
-            </p>
-          </md-content>
+          <form name="levelsForm">
+            <md-select label="{{ 'level_name' | translate }}" placeholder="{{ 'level_name' | translate }}" data-md-container-class="selectdemoSelectHeader" ng-model="removeLevel"
+              md-on-close="clearSearchTerm()">
+              <md-select-header class="demo-select-header">
+                <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" placeholder="{{ 'search' | translate }} {{ 'levels' | translate }}"
+                  type="search" class="demo-header-searchbox md-text">
+              </md-select-header>
+              <md-option ng-value="level.id" ng-repeat="level in levels |
+              filter:searchTerm track by level.id">{{ level.name }}</md-option>
+            </md-select>
+            <div align='center'>
+              <md-button class="md-raised md-primary" type="submit" ng-click="deleteLevel()">{{'remove'|translate}}</md-button>
+            </div>
+          </form>
         </div>
       </md-tab>
     </md-tabs>
+    </div>
   </md-content>
 </div>

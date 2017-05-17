@@ -23,6 +23,7 @@ angular.module('xookFrontApp')
 
       var urlCountries = 'http://xook.com.gt:88/api/categorie-all';
       $scope.categories;
+
       $http({
         method: 'GET',
         url: urlCountries
@@ -62,12 +63,14 @@ angular.module('xookFrontApp')
       name: '',
       description: '',
       category: '',
-      level: ''
+      level: '',
+
+      edit: ''
     };
 
 
     $scope.addCourse = function () {
-      console.log($scope.course);
+      // console.log($scope.course);
       var req = {
         method: 'POST',
         url: 'http://xook.com.gt:88/api/course',
@@ -88,7 +91,36 @@ angular.module('xookFrontApp')
           });
     };
 
+    $scope.Searchcourses = function () {
 
+      var urlCourse = 'http://xook.com.gt:88/api/course-all';
+      $scope.courses;
+      $http({
+        method: 'GET',
+        url: urlCourse
+      }).then(function successCallback(response) {
+        $scope.courses = response['data'];
+        console.log($scope.courses);
+      }, function errorCallback(response) {
+        $scope.courses = [{
+          "id": 1,
+          "name": "courses no found"
+        }];
+      });
+    };
+
+
+    // -------------------------------------- EDIT COURSE
+
+    $scope.selectChangedEdit = function () {
+      $scope.course.edit;
+    };
+
+
+//add id 
+    $scope.searchCouserId = function (id) {
+
+    };
 
 
 
