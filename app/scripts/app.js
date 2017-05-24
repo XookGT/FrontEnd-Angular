@@ -74,6 +74,8 @@ angular
       });
 
     $translateProvider.translations('en', {
+      'msg_welcome':'Welcome a the X O O K family', 
+      'remember_welcome': 'Remember any problem you can contact us at info@xook.com.gt',
       'user_name': 'User name',
       'password': 'Password',
       'error_pass': 'Your password is short. 8 chars minimum',
@@ -152,6 +154,8 @@ angular
     });
 
     $translateProvider.translations('es', {
+      'msg_welcome':'Bienvenido a la gran familia X O O K',
+      'remember_welcome': 'recuerda cualquier inconveniente comunicate con nosotros a info@xook.com.gt',
       'user_name': 'Nombre usuario',
       'password': 'Contraseña',
       'error_pass': 'Tu contraseña es pequeña debe de tener 8 caracteres minimo.',
@@ -233,6 +237,8 @@ angular
       if (!loginService.isLoggedIn()) {
         // toastr.error('Iniciar Sesion para continuar', 'Mensaje');
         $location.path('/login');
+      }else if (loginService.isLoggedIn() && $location.path()=='/login'){
+        $location.path('/courses');
       }
     });
 

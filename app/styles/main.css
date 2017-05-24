@@ -132,27 +132,46 @@ body {
 /* make footer staty in the bottom*/
 
 #wrapper {
-	min-height:100%;
-	position:relative;
+  min-height: 100%;
+  position: relative;
 }
+
 #content {
-	padding-bottom:100px; /* Height of the footer element */
+  padding-bottom: 100px;
+  /* Height of the footer element */
 }
+
 #footer {
-	width:100%;
-	position:absolute;
-	bottom:0;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
   border: none;
-	left:0;
+  left: 0;
 }
+
 
 /*TAB SER COLOR*/
 
-a.md-default-theme:not(.md-button), a:not(.md-button) {
-    /* color: rgb(255,64,129); */
-    color: #337ab7;
+a.md-default-theme:not(.md-button),
+a:not(.md-button) {
+  /* color: rgb(255,64,129); */
+  color: #337ab7;
 }
-a.md-default-theme:not(.md-button):hover, a:not(.md-button):hover {
-    /*color: rgb(194,24,91);*/
-    color: #337ab7
+
+a.md-default-theme:not(.md-button):hover,
+a:not(.md-button):hover {
+  /*color: rgb(194,24,91);*/
+  color: #337ab7
+}
+
+.headerMain {
+  padding-bottom: 100px;
+  position: static;
+  overflow-y: hidden;
+  width: 100%;
+  min-height: 100%;
+  color: #fff;
+  background: url(../images/bg-pattern.png), #7b4397;
+  background: url(../images/bg-pattern.png), -webkit-linear-gradient(to left, #7b4397, #dc2430);
+  background: url(../images/bg-pattern.png), linear-gradient(to left, #7b4397, #dc2430);
 }
