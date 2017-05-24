@@ -102,10 +102,7 @@ angular.module('xookFrontApp')
     $scope.deleteLevel = function () {
       var req = {
         method: 'DELETE',
-        url: 'http://xook.com.gt:88/api/level/' + $scope.removeLevel,
-        data: {
-          'name': $scope.levelNameEdit
-        }
+        url: 'http://xook.com.gt:88/api/level/' + $scope.removeLevel
       };
 
        $http(req)

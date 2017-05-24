@@ -1,0 +1,158 @@
+<div ng-include="menuTemplate.url"></div>
+<div class="container-fluid ">
+  <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+      <uib-tabset active="active">
+        <uib-tabset active="active">
+          <uib-tab index="0" heading="Static title">
+
+            <uib-tab-heading>
+              <i class="glyphicon glyphicon-bell"></i> Static content
+            </uib-tab-heading>
+            <!-- *****************************************************************INICIO DE FORMULARIO -->
+            <form name="userForm">
+              <br>
+              <div class="panel panel-default">
+                <div class="panel-heading" align="center">{{ 'general_data' | translate }}</div>
+                <div class="panel-body">
+
+
+                  <div layout-gt-xs="row">
+                    <md-input-container class="" flex-gt-xs="60">
+                      <label>{{ 'complet_name' | translate }}</label>
+                      <input ng-model="user.name" name="name" required="" md-maxlength="80">
+                      <div ng-messages="userForm.name.$error">
+                        <div ng-message="required">{{ 'error_required' | translate }}</div>
+                        <div ng-message="md-maxlength">{{ 'error_length' | translate }}</div>
+                      </div>
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="40">
+                      <label>{{ 'enter_date' | translate }}</label>
+                      <md-datepicker ng-model="user.date" name="date" required=""></md-datepicker>
+                      <div ng-messages="userForm.date.$error">
+                        <div ng-message="required">{{ 'error_required' | translate }}</div>
+                      </div>
+                    </md-input-container>
+                  </div>
+                  <md-input-container class="" flex-gt-xs="60" layout="column" layout-align="end center">
+                    <label>CUI</label>
+                    <input ng-model="user.cui" name="cui" required="">
+                    <div ng-messages="userForm.cui.$error">
+                      <div ng-message="required">{{ 'error_required' | translate }}</div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container class="" flex-gt-xs="60" layout="column" layout-align="end center">
+                    <label>{{ 'telphone' | translate }}</label>
+                    <input ng-model="user.tel" name="tel" required="">
+                    <md-tooltip md-direction="bottom">{{ 'toolTTelphone' | translate }}</md-tooltip>
+                    <div ng-messages="userForm.tel.$error">
+                      <div ng-message="required">{{ 'error_required' | translate }}</div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container class="" flex-gt-xs="60" layout="column" layout-align="end center">
+                    <label>{{ 'address' | translate }}</label>
+                    <input ng-model="user.address" name="address" required="">
+                    <div ng-messages="userForm.address.$error">
+                      <div ng-message="required">{{ 'error_required' | translate }}</div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container class="" flex-gt-xs="60" layout="column" layout-align="end center">
+                    <label>{{ 'mail' | translate }}</label>
+                    <input ng-model="user.mail" name="mail" required="" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                    <div ng-messages="userForm.mail.$error">
+                      <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">{{ 'error_mail' | translate }}</div>
+                    </div>
+                  </md-input-container>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" align="center">{{ 'public_data' | translate }}</div>
+                <div class="panel-body">
+                  <md-input-container class="md-block" flex-gt-xs="100" layout="column" layout-align="end center">
+                    <label>{{ 'aboutYou' | translate }}</label>
+                    <textarea ng-model="user.aboutYou" name="aboutYou" md-maxlength="150" rows="3" md-select-on-focus="" required=""></textarea>
+                    <md-tooltip md-direction="bottom">{{ 'toolTAboutYou' | translate }}</md-tooltip>
+                    <div ng-messages="userForm.aboutYou.$error">
+                      <div ng-message="required">{{ 'error_required' | translate }}</div>
+                      <div ng-message="md-maxlength">{{ 'error_length' | translate }}</div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-xs="">
+                    <label>Vegetables</label>
+                    <md-select ng-model="selectedVegetables" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader"
+                      multiple="">
+                      <md-select-header class="demo-select-header">
+                        <input ng-model="searchTerm" type="search" placeholder="Search for a vegetable.." class="demo-header-searchbox md-text">
+                      </md-select-header>
+                      <md-optgroup label="vegetables">
+                        <md-option ng-value="vegetable" ng-repeat="vegetable in vegetables |
+              filter:searchTerm">{{vegetable}}</md-option>
+                      </md-optgroup>
+                    </md-select>
+                  </md-input-container>
+                </div>
+
+              </div>
+
+
+
+
+              <div>
+                <md-button type="submit">Submit</md-button>
+              </div>
+            </form>
+            <!--*******************************************************************************FIN DE FORMULARIO-->
+          </uib-tab>
+          <uib-tab index="3" select="alertMe()">
+            <uib-tab-heading>
+              <i class="glyphicon glyphicon-bell"></i> Alert!
+            </uib-tab-heading>
+            I've got an HTML heading, and a select callback. Pretty cool!
+          </uib-tab>
+        </uib-tabset>
+    </div>
+    <div class="col-sm-3">
+      <md-card>
+        <img ng-src="http://i1.mendozapost.com/files/image/7/7142/54b6f4c45797b_1420_!.jpg?s=270345070aa93e05e936c1b6f31c0904&d=1421508947"
+          class="md-card-image" alt="Photo Profile">
+        <i class="icon-remove blue delete"></i>
+        <md-card-title>
+          <md-card-title-text>
+            <!--<span class="md-headline">Erick Brayan Suy Miranda</span>-->
+            <md-input-container>
+              <label>{{ 'complet_name' | translate }}</label>
+              <input ng-model="user.name" disabled="">
+            </md-input-container>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <md-input-container>
+            <label>{{ 'aboutYou' | translate }}</label>
+            <textarea ng-model="user.aboutYou" md-maxlength="150" rows="3" md-select-on-focus="" disabled=""></textarea>
+          </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <i class="fa fa-external-link" aria-hidden="true"></i>
+          </md-button>
+          <md-menu>
+            <md-button aria-label="menu" class="md-fab md-mini md-primary" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </md-button>
+            <md-menu-content width="4">
+              <md-menu-item>
+                <md-button ng-click="ctrl.redial($event)">
+                  <md-icon md-menu-align-target=""> <i class="fa fa-floppy-o" aria-hidden="true"></i></md-icon>
+                  Guardar
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </div>
+
+</div>

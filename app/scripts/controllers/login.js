@@ -8,7 +8,7 @@
  * Controller of the xookFrontApp
  */
 angular.module('xookFrontApp')
-  .controller('LoginCtrl', function ($scope, $http, toastr, loginService,$location) {
+  .controller('LoginCtrl', function ($scope, $http, toastr, loginService, $location) {
     $scope.load = false;
     $scope.role = '';
 
@@ -22,7 +22,15 @@ angular.module('xookFrontApp')
       url: 'views/menu.html'
     };
 
-// ---------------------------------------------------------------- this is method that login management
+
+
+    //***************************************************************** add clas active of navbar  */
+    $scope.isActive = function (viewLocation) {
+      return viewLocation === $location.path();
+
+    };
+
+    // ---------------------------------------------------------------- this is method that login management
     $scope.loginAction = function () {
       // console.log('hola' + $scope.cat.nameCat);
       $scope.load = true; // this is variable that enable the progress bar
@@ -48,12 +56,12 @@ angular.module('xookFrontApp')
             $scope.load = false;
             loginService.unCacheSession('userIsLogin');
             loginService.unCacheSession('tokenLogin');
-            $scope.role="";
+            $scope.role = "";
             toastr.error(response['data']['error'], "Login status");
           });
     };
 
-// -----------------------------------------------------------------this is method that management role users
+    // -----------------------------------------------------------------this is method that management role users
     $scope.getRole = function () {
       if (sessionStorage.getItem('tokenLogin') != null) {
         var token = 'bearer ' + sessionStorage.getItem('tokenLogin');
@@ -67,32 +75,32 @@ angular.module('xookFrontApp')
 
         $http(req)
           .then(function (response) {
-              loginService.cacheSession('role',response['data']['role']);
+              loginService.cacheSession('role', response['data']['role']);
             },
             function (response) { // optional
-              $scope.role="";
+              $scope.role = "";
               loginService.unCacheSession('role');
             });
       }
     };
 
 
-//-------------------------------------------- case of the role.
+    //-------------------------------------------- case of the role.
     $scope.IsAdmin = function () {
-      return loginService.getSession('role')=='admin';
+      return loginService.getSession('role') == 'admin';
     };
 
     $scope.IsTutor = function () {
       //console.log(loginService.getSession('role'));
-      return loginService.getSession('role')=='tutor';
+      return loginService.getSession('role') == 'tutor';
     };
 
     $scope.IsUser = function () {
       //console.log(loginService.getSession('role'));
-      return loginService.getSession('role')=='user';
+      return loginService.getSession('role') == 'user';
     };
 
-    $scope.IsLogin = function(){
-      return loginService.getSession('userIsLogin')=='true';
+    $scope.IsLogin = function () {
+      return loginService.getSession('userIsLogin') == 'true';
     };
   });

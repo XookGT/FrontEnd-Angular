@@ -9,11 +9,17 @@
  */
 angular.module('xookFrontApp')
   .controller('MenuCtrl', function ($translate, $scope, $timeout, $mdSidenav,loginService,$location) {
+    //*************************************************************************** ACTIVE CLASS */
+    $scope.isActive= function (viewLocation) {
+      return viewLocation===$location.path();
 
+    };
+    
+    //*************************************************************************** CHANGE LANGUAGE */
     $scope.changeLanguage = function (langKey) {
       $translate.use(langKey);
     };
-
+    //**************************************************************************** OPEN MENU DROP */
     var originatorEv;
     $scope.openMenu = function ($mdOpenMenu, ev) {
       originatorEv = ev;
@@ -21,13 +27,13 @@ angular.module('xookFrontApp')
     };
 
 
-    // side menu
+    // ************************************************************************* SIDE MENU
 
     $scope.toggleSidenav = function (menuId) {
       $mdSidenav(menuId).toggle();
     };
 
-
+    // ************************************************************************* LOGOUT
     $scope.logOut=function(){
       console.log("remove key");
       loginService.unCacheSession('userIsLogin');

@@ -29,14 +29,20 @@
   <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-  
-    <div ng-view=""></div>
-</body>
-<div class="footer">
-  <div class="container">
-    <p><span class="glyphicon glyphicon-cog"></span> X O O K Compny</p>
+  <div id="wrapper">
+    <div id="content">
+      <div ng-view=""></div>
+    </div>
+    <div id="footer">
+      <div class="footer">
+        <div class="container">
+          <p><span class="glyphicon glyphicon-cog"></span> X O O K Company</p>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</body>
+
 
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -73,7 +79,7 @@
 <!-- Angular Material Javascript now available via Google CDN; version 0.9.4 used here -->
 <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
 <script src="bower_components/angular-translate/angular-translate.js"></script>
-<script src="styles/ui-bootstrap.js"></script>
+<script src="styles/ui-bootstrap-tpls-2.5.0.min.js"></script>
 
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -86,6 +92,7 @@
 <script src="scripts/controllers/menu.js"></script>
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/services/loginservice.js"></script>
+<script src="scripts/controllers/profile.js"></script>
 <!-- endbuild -->
 
 </html>

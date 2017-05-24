@@ -8,7 +8,7 @@
  * Controller of the xookFrontApp
  */
 angular.module('xookFrontApp')
-  .controller('CoursesCtrl', function ($scope, $http, toastr) {
+  .controller('CoursesCtrl', function ($scope, $http, toastr, $sce) {
 
     $scope.menuTemplate = {
       url: 'views/menu.html'
@@ -64,11 +64,45 @@ angular.module('xookFrontApp')
       description: '',
       category: '',
       level: '',
-
+      stars: 0,
       edit: ''
+    };
+    //--------------------------------------------------------------------- PUT STAR}
+    $scope.stars = function (promedioStars) {
+      var estrellasHTML = '';
+      var promedioEntero = Math.floor(promedioStars);
+      for (var i = 0; i < promedioEntero; i += 1) {
+        estrellasHTML += '<i class="fa fa-star fa-5x" style="color:yellow"></i>';
+      }
+      if (promedioStars > promedioEntero) {
+        estrellasHTML += '<i class="fa fa-star-half-o fa-5x" style="color:yellow"></i>';
+      }
+      $scope.course.starVisual = $sce.trustAsHtml(estrellasHTML+'<br><h1>'+promedioStars+'</h1>');
     };
 
 
+
+
+    //--------------------------------------------------------------------- SEARCH COURSE
+    $scope.Searchcourses = function () {
+
+      var urlCourse = 'http://xook.com.gt:88/api/course-all';
+      $scope.courses;
+      $http({
+        method: 'GET',
+        url: urlCourse
+      }).then(function successCallback(response) {
+        $scope.courses = response['data'];
+        // console.lo g($scope.courses);
+      }, function errorCallback(response) {
+        $scope.courses = [{
+          "id": 1,
+          "name": "courses no found"
+        }];
+      });
+    };
+
+    //--------------------------------------------------------------------- ADD COURSE
     $scope.addCourse = function () {
       // console.log($scope.course);
       var req = {
@@ -91,35 +125,73 @@ angular.module('xookFrontApp')
           });
     };
 
-    $scope.Searchcourses = function () {
+    //--------------------------------------------------------------------- EDIT COURSE
 
-      var urlCourse = 'http://xook.com.gt:88/api/course-all';
-      $scope.courses;
-      $http({
+
+    $scope.selectEditCourse = function () {
+
+      var req = {
         method: 'GET',
-        url: urlCourse
-      }).then(function successCallback(response) {
-        $scope.courses = response['data'];
-        console.log($scope.courses);
-      }, function errorCallback(response) {
-        $scope.courses = [{
-          "id": 1,
-          "name": "courses no found"
-        }];
-      });
+        url: 'http://xook.com.gt:88/api/course/' + $scope.selectCourseEdit
+      };
+
+      $http(req)
+        .then(function (response) {
+            //console.log(response);
+            $scope.course.name = response['data']['name'];
+            $scope.course.description = response['data']['description'];
+            $scope.course.category = response['data']['id_categorie'];
+            $scope.course.level = response['data']['id_level'];
+            $scope.course.stars = parseInt(response['data']['starts']);
+            $scope.stars($scope.course.stars);
+          },
+          function (response) { // optional
+            //console.log(response);
+
+          });
     };
 
+    $scope.editCourse = function () {
+      var req = {
+        method: 'PUT',
+        url: 'http://xook.com.gt:88/api/course/' + $scope.selectCourseEdit,
+        data: {
+          'name': $scope.course.name,
+          'description': $scope.course.description,
+          'starts': parseInt($scope.course.stars),
+          'id_categorie': parseInt($scope.course.category),
+          'id_level':parseInt( $scope.course.level)          
+        }
 
-    // -------------------------------------- EDIT COURSE
+      };
 
-    $scope.selectChangedEdit = function () {
-      $scope.course.edit;
+      $http(req)
+
+        .then(function (response) {
+            toastr.success(response['data']['msj'], "Course status");
+            $scope.Searchcourses();
+            //console.log(data);
+          },
+          function (response) { // optional
+            toastr.error(response['data']['msj'], "Course status");
+          });
     };
 
+    //--------------------------------------------------------------------- REMOVE   COURSE
+    $scope.deleteCourse = function () {
+      var req = {
+        method: 'DELETE',
+        url: 'http://xook.com.gt:88/api/course/' + $scope.removeCourse
+      };
 
-//add id 
-    $scope.searchCouserId = function (id) {
-
+      $http(req)
+        .then(function (response) {
+            toastr.success(response['data']['msj'], "Course status");
+            $scope.Searchcourses();
+          },
+          function (response) { // optional
+            toastr.error(response['data']['msj'], "Course status");
+          });
     };
 
 

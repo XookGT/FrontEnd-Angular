@@ -48,9 +48,9 @@
                 <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
               </md-button>-->
               </li>
-              <li><a ng-href="#/categories">{{'categories' | translate}}</a></li>
-              <li><a ng-href="#/levels">{{'levels' | translate}}</a></li>
-              <li><a ng-href="#/courses">{{'courses' | translate}}</a></li>
+              <li ng-class="{active: isActive('/categories')}"><a ng-href="#/categories">{{'categories' | translate}}</a></li>
+              <li ng-class="{active: isActive('/levels')}"><a ng-href="#/levels">{{'levels' | translate}}</a></li>
+              <li ng-class="{active: isActive('/courses')}"><a ng-href="#/courses">{{'courses' | translate}}</a></li>
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="">
                 {{'tutoring' | translate}}
@@ -69,6 +69,11 @@
                   <li><a href="#">{{'province' | translate}}</a></li>
                 </ul>
               </li>
+            </ul>
+          </div>
+          <div ng-show="IsTutor()" ng-controller="LoginCtrl">
+            <ul class="nav navbar-nav">
+              <li><a ng-href="#/profile">{{'profile' | translate}}</a></li>
             </ul>
           </div>
           <!--RIGHT MENU- RIGHT OPTIONS-->
@@ -97,7 +102,7 @@
             <span ng-show="IsLogin()" ng-controller="LoginCtrl">
               <md-button aria-label="menu" class="md-fab md-mini md-raised" ng-click="logOut()">
                 <span class="fa fa-sign-out fa-1x"></span>
-              </md-button>
+            </md-button>
             </span>
           </ul>
 

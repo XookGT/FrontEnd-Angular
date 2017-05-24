@@ -23,7 +23,10 @@ angular
     'toastr',
     'ui.bootstrap'
   ])
-  .config(function ($routeProvider, $locationProvider, $translateProvider) {
+  .config(function ($routeProvider, $locationProvider, $translateProvider, $mdThemingProvider) {
+
+    
+
     $locationProvider.hashPrefix('');
     $routeProvider
       .when('/', {
@@ -60,6 +63,11 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
+      })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl',
+        controllerAs: 'profile'
       })
       .otherwise({
         redirectTo: '/'
@@ -122,6 +130,7 @@ angular
 
 
       categories: 'Categories',
+      category: 'Category',
       categorie_name: 'Categorie Name',
       error_maxlength: 'The text is long',
       add: 'Add',
@@ -134,6 +143,8 @@ angular
       level: 'Level',
 
       courses: 'Courses',
+      course: 'Course',
+      stars: 'Stars',
       courses_name: 'Course Name',
       description: 'Description'
 
@@ -196,6 +207,7 @@ angular
 
 
       categories: 'Categorias',
+      category: 'Categoria',
       categorie_name: 'Nombre de Categoria',
       error_maxlength: 'El texto es demasiado grande',
       add: 'Agregar',
@@ -207,6 +219,8 @@ angular
       level: 'Nivel',
 
       courses: 'Cursos',
+      course: 'Curso',
+      stars: 'Estrellas',
       courses_name: 'Nombre de Curso',
       description: 'Descripcion'
     });
@@ -214,12 +228,12 @@ angular
     $translateProvider.preferredLanguage('en');
   })
   .run(function ($rootScope, $location, loginService) {
-      
-      $rootScope.$on('$routeChangeStart', function () {
-          if (!loginService.isLoggedIn()) {
-            // toastr.error('Iniciar Sesion para continuar', 'Mensaje');
-            $location.path('/login');
-          }
-        });
 
-      });
+    $rootScope.$on('$routeChangeStart', function () {
+      if (!loginService.isLoggedIn()) {
+        // toastr.error('Iniciar Sesion para continuar', 'Mensaje');
+        $location.path('/login');
+      }
+    });
+
+  });

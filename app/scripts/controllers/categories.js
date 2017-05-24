@@ -14,6 +14,7 @@ angular.module('xookFrontApp')
       url: 'views/menu.html'
     };
 
+    //--------------------------------------------------------------------- SEARCH CATEGORY
     $scope.SearchCategories = function () {
 
       var urlCountries = 'http://xook.com.gt:88/api/categorie-all';
@@ -23,7 +24,7 @@ angular.module('xookFrontApp')
         url: urlCountries
       }).then(function successCallback(response) {
         $scope.categories = response['data'];
-        console.log($scope.categories);
+        //console.log($scope.categories);
       }, function errorCallback(response) {
         $scope.categories = [{
           "id": 1,
@@ -37,6 +38,8 @@ angular.module('xookFrontApp')
     $scope.clearSearchTerm = function () {
       $scope.searchTerm = '';
     };
+
+    //--------------------------------------------------------------------- ADD LEVEL
 
 
     $scope.addCategorie = function () {
@@ -56,9 +59,60 @@ angular.module('xookFrontApp')
           function (response) { // optional
             toastr.error(response['data']['msj'], "Category status");
           });
-
-
-
     };
 
+
+    //--------------------------------------------------------------------- EDIT CATEGORY
+    $scope.selectEditCategory = function () {
+
+      var req = {
+        method: 'GET',
+        url: 'http://xook.com.gt:88/api/categorie/' + $scope.selectCategoryEdit
+      };
+
+      $http(req)
+        .then(function (response) {
+            $scope.CategoryNameEdit = response['data']['name'];
+          },
+          function (response) { // optional
+
+
+          });
+    };
+
+    $scope.editCategory = function () {
+      var req = {
+        method: 'PUT',
+        url: 'http://xook.com.gt:88/api/categorie/' + $scope.selectCategoryEdit,
+        data: {
+          'name': $scope.CategoryNameEdit
+        }
+      };
+
+      $http(req)
+        .then(function (response) {
+            toastr.success(response['data']['msj'], "Category status");
+            $scope.SearchCategories();
+          },
+          function (response) { // optional
+            toastr.error(response['data']['msj'], "Category status");
+          });
+    };
+
+    //--------------------------------------------------------------------- REMOVE CATEGORY
+    $scope.deleteCategory = function () {
+      var req = {
+        method: 'DELETE',
+        url: 'http://xook.com.gt:88/api/categorie/' + $scope.removeCategory
+      };
+
+       $http(req)
+        .then(function (response) {
+            toastr.success(response['data']['msj'], "Category status");
+            $scope.SearchCategories();
+          },
+          function (response) { // optional
+            toastr.error(response['data']['msj'], "Category status");
+          });
+    };
   });
