@@ -49,7 +49,7 @@ angular.module('xookFrontApp')
             loginService.cacheSession('userIsLogin', true);
             loginService.cacheSession('tokenLogin', response['data']['token']);
             $scope.getRole();
-            $location.path('/courses');
+            $location.path('/');
             //console.log($scope.role)
           },
           function (response) { // if error

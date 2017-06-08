@@ -35,11 +35,11 @@ angular.module('xookFrontApp')
 
     // ************************************************************************* LOGOUT
     $scope.logOut=function(){
-      console.log("remove key");
+      //console.log("remove key");
       loginService.unCacheSession('userIsLogin');
       loginService.unCacheSession('tokenLogin');
       loginService.unCacheSession('role');
-      console.log(loginService.getSession('role'));
+      //console.log(loginService.getSession('role'));
       $location.path('/login');
     };
   });

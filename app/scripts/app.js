@@ -25,7 +25,7 @@ angular
   ])
   .config(function ($routeProvider, $locationProvider, $translateProvider, $mdThemingProvider) {
 
-    
+
 
     $locationProvider.hashPrefix('');
     $routeProvider
@@ -69,12 +69,22 @@ angular
         controller: 'ProfileCtrl',
         controllerAs: 'profile'
       })
+      .when('/country', {
+        templateUrl: 'views/country.html',
+        controller: 'CountryCtrl',
+        controllerAs: 'country'
+      })
+      .when('/province', {
+        templateUrl: 'views/province.html',
+        controller: 'ProvinceCtrl',
+        controllerAs: 'province'
+      })
       .otherwise({
         redirectTo: '/'
       });
 
     $translateProvider.translations('en', {
-      'msg_welcome':'Welcome a the X O O K family', 
+      'msg_welcome': 'Welcome a the X O O K family',
       'remember_welcome': 'Remember any problem you can contact us at info@xook.com.gt',
       'user_name': 'User name',
       'password': 'Password',
@@ -148,13 +158,23 @@ angular
       course: 'Course',
       stars: 'Stars',
       courses_name: 'Course Name',
-      description: 'Description'
+      description: 'Description',
+
+      countries: 'Countries',
+      country: 'Country',
+      country_name: 'Country Name',
+
+      province: 'Province',
+      provinces: 'Provinces',
+      province_name: 'Province Name',
+
+      select: 'Select'
 
 
     });
 
     $translateProvider.translations('es', {
-      'msg_welcome':'Bienvenido a la gran familia X O O K',
+      'msg_welcome': 'Bienvenido a la gran familia X O O K',
       'remember_welcome': 'recuerda cualquier inconveniente comunicate con nosotros a info@xook.com.gt',
       'user_name': 'Nombre usuario',
       'password': 'Contraseña',
@@ -226,7 +246,17 @@ angular
       course: 'Curso',
       stars: 'Estrellas',
       courses_name: 'Nombre de Curso',
-      description: 'Descripcion'
+      description: 'Descripcion',
+
+      countries: 'Paises',
+      country: 'Pais',
+      country_name: 'Nombre Pais',
+
+      provinces: 'Departamentos',
+      province: 'Departamento',
+      province_name: 'Province Name',
+
+      select: 'Seleccione'
     });
 
     $translateProvider.preferredLanguage('en');
@@ -235,10 +265,13 @@ angular
 
     $rootScope.$on('$routeChangeStart', function () {
       if (!loginService.isLoggedIn()) {
-        // toastr.error('Iniciar Sesion para continuar', 'Mensaje');
         $location.path('/login');
-      }else if (loginService.isLoggedIn() && $location.path()=='/login'){
-        $location.path('/courses');
+      } else if (loginService.isLoggedIn() && $location.path() == '/login') {
+        $location.path('/');
+      } else {
+        if (!loginService.permission($location.path())) {
+          $location.path('/');
+        }
       }
     });
 

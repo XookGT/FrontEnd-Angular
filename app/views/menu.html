@@ -51,6 +51,17 @@
               <li ng-class="{active: isActive('/categories')}"><a ng-href="#/categories">{{'categories' | translate}}</a></li>
               <li ng-class="{active: isActive('/levels')}"><a ng-href="#/levels">{{'levels' | translate}}</a></li>
               <li ng-class="{active: isActive('/courses')}"><a ng-href="#/courses">{{'courses' | translate}}</a></li>
+
+
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                {{'location' | translate}}
+              <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li ng-class="{active: isActive('/country')}"><a ng-href="#/country">{{'country' | translate}}</a></li>
+                  <li ng-class="{active: isActive('/province')}"><a ng-href="#/province">{{'province' | translate}}</a></li>
+                </ul>
+              </li>
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="">
                 {{'tutoring' | translate}}
@@ -58,15 +69,6 @@
                 <ul class="dropdown-menu">
                   <li><a href="#">{{'tutors' | translate}}</a></li>
                   <li><a href="#">{{'schedule' | translate}}</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                {{'location' | translate}}
-              <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">{{'country' | translate}}</a></li>
-                  <li><a href="#">{{'province' | translate}}</a></li>
                 </ul>
               </li>
             </ul>

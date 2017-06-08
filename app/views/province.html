@@ -1,0 +1,128 @@
+<div ng-include="menuTemplate.url"></div>
+<div class="container-fluid">
+  <md-content>
+
+    <div class="page-header">
+      <h1>{{ 'provinces' | translate }}</h1>
+    </div>
+    <md-tabs md-dynamic-height="" md-border-bottom="  " ng-click="SearchCountries()">
+      <md-tab label="{{'add'|translate}}">
+        <div class="container">
+          <md-content class="md-padding">
+            <form name="provincesForm">
+
+              <md-input-container class="md-block">
+                <label>{{ 'province_name' | translate }}</label>
+                <input required="" type="text" name="nameProvince" ng-model="province.name" minlength="2" maxlength="50">
+
+                <div ng-messages="provincesForm.nameProvince.$error" role="alert">
+                  <div ng-message="required">{{ 'error_required' | translate }}</div>
+                  <div ng-message="max">
+                    {{ 'error_maxlength' | translate }}
+                  </div>
+                </div>
+              </md-input-container>
+              <label>{{ 'countries' | translate }}</label>
+              <md-select label="{{ 'country_name' | translate }}" data-md-container-class="selectdemoSelectHeader" ng-model="province.country"
+                md-on-close="clearSearchTerm()" placeholder="{{'select'| translate}} {{'country'|translate}}">
+                <md-select-header class="demo-select-header">
+                  <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" placeholder="{{ 'search' | translate }} {{ 'country' | translate }}"
+                    type="search" class="demo-header-searchbox md-text">
+                </md-select-header>
+                <md-option ng-value="country.id" ng-repeat="country in countries |
+              filter:searchTerm track by country.id">{{ country.name }}</md-option>
+              </md-select>
+              <div align='center'>
+                <md-button class="md-raised md-primary" type="submit" ng-click="addProvince()">{{'add'|translate}}</md-button>
+              </div>
+            </form>
+          </md-content>
+        </div>
+      </md-tab>
+      <md-tab label="{{'edit'|translate}}" ng-click="SearchProvinces()">
+        <div class="container">
+          <br>
+          <label>{{ 'provinces' | translate }}</label>
+          <md-select label="{{ 'province_name' | translate }}" placeholder="{{ 'province_name' | translate }}" data-md-container-class="selectdemoSelectHeader"
+            ng-model="selectprovinceEdit" md-on-close="clearSearchTerm()" ng-change="selectEditprovince()">
+            <md-select-header class="demo-select-header">
+              <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" placeholder="{{ 'search' | translate }} {{ 'provinces' | translate }}"
+                type="search" class="demo-header-searchbox md-text">
+            </md-select-header>
+            <md-option ng-value="pro.id" ng-repeat="pro in provinces |
+              filter:searchTerm track by pro.id">{{ pro.name }}</md-option>
+          </md-select>
+          <div class="panel panel-default">
+            <div class="panel-heading">{{ 'edit' | translate }} {{ 'province' | translate }}</div>
+            <div class="panel-body">
+              <form name="provincesForm">
+
+                <md-input-container class="md-block">
+                  <label>{{ 'province_name' | translate }}</label>
+                  <input required="" type="text" name="nameProvince" ng-model="province.name" minlength="2" maxlength="50">
+
+                  <div ng-messages="provincesForm.nameProvince.$error" role="alert">
+                    <div ng-message="required">{{ 'error_required' | translate }}</div>
+                    <div ng-message="max">
+                      {{ 'error_maxlength' | translate }}
+                    </div>
+                  </div>
+                </md-input-container>
+                <label>{{ 'countries' | translate }}</label>
+                <md-select label="{{ 'country_name' | translate }}" data-md-container-class="selectdemoSelectHeader" ng-model="province.country"
+                  md-on-close="clearSearchTerm()" placeholder="{{'select'| translate}} {{'country'|translate}}" name="countryPronvince"
+                  required="">
+                  <md-select-header class="demo-select-header">
+                    <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" placeholder="{{ 'search' | translate }} {{ 'country' | translate }}"
+                      type="search" class="demo-header-searchbox md-text">
+                  </md-select-header>
+                  <md-option ng-value="country.id" ng-repeat="country in countries |
+              filter:searchTerm track by country.id" ng-selected="{{ country.id == province.country}}">{{ country.name }}</md-option>
+                </md-select>
+                <div align='center'>
+                  <md-button class="md-raised md-primary" type="submit" ng-click="editProvince()">{{'edit'|translate}}</md-button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </md-tab>
+      <md-tab label="{{'search'|translate}}" ng-click="SearchProvinces()">
+        <div class="container">
+
+          <label>{{ 'provinces' | translate }}</label>
+          <md-select label="{{ 'province_name' | translate }}" data-md-container-class="selectdemoSelectHeader" ng-model="selectedUser"
+            md-on-close="clearSearchTerm()">
+            <md-select-header class="demo-select-header">
+              <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" placeholder="{{ 'search' | translate }} {{ 'provinces' | translate }}"
+                type="search" class="demo-header-searchbox md-text">
+            </md-select-header>
+            <md-option ng-value="user" ng-repeat="user in provinces |
+              filter:searchTerm track by user.id">{{ user.name }}</md-option>
+          </md-select>
+
+        </div>
+      </md-tab>
+      <md-tab label="{{'remove'|translate}}" ng-click="SearchProvinces()">
+        <div class="container">
+          <form name="provincesForm">
+            <md-select label="{{ 'province_name' | translate }}" placeholder="{{ 'province_name' | translate }}" data-md-container-class="selectdemoSelectHeader"
+              ng-model="removeprovince" md-on-close="clearSearchTerm()">
+              <md-select-header class="demo-select-header">
+                <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" placeholder="{{ 'search' | translate }} {{ 'provinces' | translate }}"
+                  type="search" class="demo-header-searchbox md-text">
+              </md-select-header>
+              <md-option ng-value="province.id" ng-repeat="province in provinces |
+              filter:searchTerm track by province.id">{{ province.name }}</md-option>
+            </md-select>
+            <div align='center'>
+              <md-button class="md-raised md-primary" type="submit" ng-click="deleteprovince()">{{'remove'|translate}}</md-button>
+            </div>
+          </form>
+        </div>
+      </md-tab>
+    </md-tabs>
+</div>
+</md-content>
+</div>
