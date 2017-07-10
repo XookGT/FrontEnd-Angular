@@ -58,6 +58,8 @@ angular.module('xookFrontApp')
           return true;
         case '/categories':
           return true;
+        case '/levels':
+          return true;
         case '/courses':
           return true;
         case '/province':
@@ -80,11 +82,7 @@ angular.module('xookFrontApp')
 
     this.permissionUsers = function (path) {
       switch (path) {
-        case '/':
-          return true;
-        case '/categories':
-          return true;
-        case '/courses':
+        case '/profile':
           return true;
         default:
           return false;

@@ -38,6 +38,7 @@ angular.module('xookFrontApp')
       //console.log("remove key");
       loginService.unCacheSession('userIsLogin');
       loginService.unCacheSession('tokenLogin');
+      loginService.unCacheSession('emailUser');
       loginService.unCacheSession('role');
       //console.log(loginService.getSession('role'));
       $location.path('/login');

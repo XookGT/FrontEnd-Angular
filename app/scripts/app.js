@@ -21,7 +21,8 @@ angular
     'ngMaterial',
     'pascalprecht.translate',
     'toastr',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'angularFileUpload'
   ])
   .config(function ($routeProvider, $locationProvider, $translateProvider, $mdThemingProvider) {
 
@@ -88,16 +89,28 @@ angular
       'remember_welcome': 'Remember any problem you can contact us at info@xook.com.gt',
       'user_name': 'User name',
       'password': 'Password',
+      'confirm': 'Confirm',
       'error_pass': 'Your password is short. 8 chars minimum',
+      'error_pass_confirm': 'The password no match',
+      terms_conditions: 'Terms and Conditions',
+
+
+      general_conditions: '<h2>Condiciones generales Definiciones:</h2>',
+      parrafo1:'- Estudiante: Persona que realiza una solicitud de servicio en Xook. <br>- Profesor: Persona que puede dictar clases de un determinado curso ya   que tiene el conocimiento. <br>- Visitantes: Personas que acceden y navegan por Xook sin solicitar un servicio.',
+      
+      agree:'Agree',
+      noagree: 'Not agree',
 
       login: 'Login',
+      register: 'Register',
 
       language_en: 'language english',
       language_es: 'language spanish',
 
       general_data: 'General Data',
       public_data: 'Public Data',
-      complet_name: 'Name',
+      name: 'Name',
+      lastname: 'Lastname ',
       enter_date: 'Enter Date',
       profile: 'Profile',
       telphone: 'Telphone',
@@ -119,12 +132,15 @@ angular
 
 
       error_required: 'This is required.',
-      error_length: 'The description is long',
+      error_length: 'The data is long',
       error_mail: 'Your email must be between 10 and 100 characters long and look like an e-mail address.',
+      error_onlyNumbers: 'Only numbers',
+      error_minlength:'The data is short',
 
       tutor_title_search: 'Select your tutoring',
       tutoring: 'Tutoring',
       tutors: 'Tutors',
+      students: 'Students',
 
       location_title_search: 'Select yout location',
       location: 'Location',
@@ -147,7 +163,10 @@ angular
       error_maxlength: 'The text is long',
       add: 'Add',
       edit: 'Edit',
+      settings: 'Setting',
       remove: 'Delete',
+      upload: 'Upload',
+      files: 'Files',
 
 
       levels: 'Levels',
@@ -178,16 +197,28 @@ angular
       'remember_welcome': 'recuerda cualquier inconveniente comunicate con nosotros a info@xook.com.gt',
       'user_name': 'Nombre usuario',
       'password': 'Contraseña',
+      'confirm': 'Confirmar',
       'error_pass': 'Tu contraseña es pequeña debe de tener 8 caracteres minimo.',
+      'error_pass_confirm': 'La contraseña no coincide',
+      terms_conditions: 'Terminos y Condiciones',
+
+      general_conditions: '<h1>Condiciones generales Definiciones:</h1>',
+      parrafo1:'- Estudiante: Persona que realiza una solicitud de servicio en Xook.  <br>- Profesor: Persona que puede dictar clases de un determinado curso ya   que tiene el conocimiento. <br>- Visitantes: Personas que acceden y navegan por Xook sin solicitar un servicio.',
+
+
+      agree:'Deacuerdo',
+      noagree: 'No Deacuerdo',      
 
       login: 'Iniciar',
+      register: 'Registro',
 
       language_en: 'Idioma Ingles',
       language_es: 'Idioma Español',
 
       general_data: 'Datos Generales',
       public_data: 'Datos Publicos',
-      complet_name: 'Nombre',
+      name: 'Nombre',
+      lastname: 'Apellido ',
       enter_date: 'Fecha Nac',
       profile: 'Perfil',
       telphone: 'Telefono',
@@ -207,13 +238,15 @@ angular
 
 
       error_required: 'Esto es obligatorio',
-      error_length: 'Descripcion demasiado larga',
+      error_length: 'El dato es demasiado largo',
       error_mail: 'Su correo electrónico debe tener entre 10 y 100 caracteres y parecer una dirección de correo electrónico.',
-
+      error_onlyNumbers: 'Solo numeros',
+      error_minlength:'El dato es demasiado corto',
 
       tutor_title_search: 'Selecciona tu tutoria',
       tutoring: 'Tutoria',
       tutors: 'Tutores',
+      students: 'Alumno',
 
       location_title_search: 'Selecciona tu ubicacion',
       location: 'Ubicacion',
@@ -236,7 +269,10 @@ angular
       error_maxlength: 'El texto es demasiado grande',
       add: 'Agregar',
       edit: 'Editar',
+      settings: 'Configuracion',
       remove: 'Eliminar',
+      upload: 'Cargar',
+      files: 'Archivos',
 
       levels: 'Niveles',
       level_name: 'Nombre de Nivel Escolar',

@@ -41,3 +41,12 @@ View Manager, install whit CDN in the index.html
 
 > bower install -save flag-icon-css 
 > for more information visit: https://github.com/lipis/flag-icon-css.
+
+
+## file-upload
+
+View Manager, install whit CDN in the index.html
+
+> npm install angular-file-upload 
+> for more information visit: https://www.npmjs.com/package/angular-file-upload.
+

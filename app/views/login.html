@@ -27,10 +27,40 @@
         </div>
       </div>
     </md-input-container>
+    <md-input-container class="md-block" ng-show="register">
+      <label>{{ 'password' | translate }} {{ 'confirm' | translate }}</label>
+      <input ng-model="user.passConfirm" name="passConfirm" ng-pattern="\b{{user.pass}}\b" required="" type="password" minlength="8">
+      <div ng-messages="loginForm.passConfirm.$error">
+        <div ng-message="required">{{ 'error_required' | translate }}</div>
+        <div ng-message="minlength">
+          {{ 'error_pass' | translate }}
+        </div>
+         <div ng-message-exp="['pattern']">
+          {{ 'error_pass_confirm' | translate }}
+        </div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block" ng-show="register" align='center'>
+      <md-switch class="md-primary  text-center"  md-no-ink aria-label="Switch to Tutors" ng-model="tutors_check">
+         <h3><i class="fa fa-graduation-cap" aria-hidden="true"></i> {{ 'tutors' | translate }}</h3>
+      </md-switch>
+    </md-input-container>
     <md-progress-linear md-mode="indeterminate" ng-show="load"></md-progress-linear>
     <div align='center'>
-      <md-button type="submit" class="md-raised md-primary" ng-click="loginAction()">{{ 'login' | translate }}</md-button>
-      
+      <md-button class="md-raised md-warn" ng-click="showAdvanced($event)" ng-show="register">
+        {{'terms_conditions'| translate }}
+      </md-button>
+      {{status}}
+      <br>
+      <md-button type="submit" class="md-raised md-primary" ng-click="loginAction()" ng-show="!register">{{ 'login' | translate }}</md-button>
+      <md-button type="submit" class="md-raised md-primary" ng-click="registerAction()" ng-show="register" ng-disabled="!agree">{{ 'register' | translate }}
+        <span ng-show="tutors_check" > {{ 'tutors' | translate }} <i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
+        <span ng-show="!tutors_check"> {{ 'students' | translate }}  <i class="fa fa-pencil" aria-hidden="true"></i></span>
+      </md-button>
+      <br>
+      <md-button type="" class="md-raised md-warn pull-right" ng-click="registerForm()" ng-show="!register">{{ 'register' | translate }}</md-button>
+
+
     </div>
   </form>
 
